@@ -454,7 +454,10 @@ class KRAckAttackClient():
 		log(STATUS, "Note: disable Wi-Fi in network manager & disable hardware encryption. Both may interfere with this script.")
 
 		# 0. Some users may forget this otherwise
+		'''
+		Disabled due to incompitability with the wifi Pineapple
 		subprocess.check_output(["rfkill", "unblock", "wifi"])
+		'''
 
 		# 1. Remove unused virtual interfaces to start from a clean state
 		subprocess.call(["iw", self.nic_mon, "del"], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
