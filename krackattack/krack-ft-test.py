@@ -74,14 +74,14 @@ the Fast BSS Transition (FT) handshake, take the following steps:
       bssid=c4:e9:84:db:fb:7b
       ssid=testnet
       ...
-      > scan_results 
+      > scan_results
       bssid / frequency / signal level / flags / ssid
       c4:e9:84:db:fb:7b	2412  -21  [WPA2-PSK+FT/PSK-CCMP][ESS] testnet
       c4:e9:84:1d:a5:bc	2412  -31  [WPA2-PSK+FT/PSK-CCMP][ESS] testnet
       ...
       > roam c4:e9:84:1d:a5:bc
       ...
-   
+
    In this example we were connected to AP c4:e9:84:db:fb:7b of testnet (see
    status command). The scan_results command shows this network also has a
    second AP with MAC c4:e9:84:1d:a5:bc. We then roam to this second AP.
@@ -193,7 +193,10 @@ class KRAckAttackFt():
 		log(STATUS, "Note: disable Wi-Fi in your network manager so it doesn't interfere with this script")
 
 		# 0. Some users may forget this otherwise
+		'''
+		XXX: Let's disable this on the Pineapples
 		subprocess.check_output(["rfkill", "unblock", "wifi"])
+		'''
 
 		# 1. Remove unused virtual interfaces to start from a clean state
 		subprocess.call(["iw", self.nic_mon, "del"], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
@@ -261,5 +264,3 @@ if __name__ == "__main__":
 	attack = KRAckAttackFt(interface)
 	atexit.register(cleanup)
 	attack.run()
-
-
